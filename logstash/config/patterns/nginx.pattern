@@ -1,0 +1,4 @@
+NGUSERNAME [a-zA-Z\.\@\-\+_%]+
+NGUSER %{NGUSERNAME}
+NGINX_ACCESS %{IPORHOST:clientip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:timestamp}\] "%{WORD:verb} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:response} (?:%{NUMBER:bytes}|-) (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent}
+NGINX_ERROR %{DATESTAMP:mydate} \[%{DATA:severity}\] (%{NUMBER:pid:int}#%{NUMBER}: \*%{NUMBER}|\*%{NUMBER}) %{GREEDYDATA:mymessage}, %{DATESTAMP:mydate} \[%{DATA:severity}\] %{GREEDYDATA:mymessage}, %{DATESTAMP:mydate} %{GREEDYDATA:mymessage}
