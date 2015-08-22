@@ -1,0 +1,13 @@
+logstashshipper:
+  image: logstash:latest
+  privileged: true
+  command: logstash -f /etc/logstash/conf.d/logstash.conf
+  ports:
+    - "8001:5000"
+  volumes:
+    - ./logstash/config/shipper:/etc/logstash/conf.d
+    - ./logstash/config/patterns:/etc/logstash/patterns
+    - ./logstash/test/nodejs:/var/log/nodejs
+    - ./logstash/test/nginx:/var/log/nginx
+    - ./logstash/test/java:/var/log/java
+    - ./logstash/test/syslog:/var/log/syslog
